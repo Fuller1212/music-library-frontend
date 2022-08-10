@@ -5,22 +5,22 @@ const DisplayMusic = (props) => {
         <table className="table">
             <thead>
                 <tr>
-                    <th> Title</th>
-                    <th> Artist</th>
-                    <th> Album</th>
-                    <th> Release Date</th>
-                    <th> Genre</th>
+                    <th scope="col"> Title</th>
+                    <th scope="col"> Artist</th>
+                    <th scope="col"> Album</th>
+                    <th scope="col"> Release Date</th>
+                    <th scope="col"> Genre</th>
                 </tr>
             </thead>
             <tbody>
-                {props.allSongs.map((response) => {
+                {props.allSongs.map((song) => {
                     return (
                     <tr>   
-                        <td>{response.title}</td>
-                        <td>{response.artist}</td>
-                        <td>{response.album}</td>
-                        <td>{response.release_date}</td>
-                        <td>{response.genre}</td>
+                        <td scope="row">{song.title}</td>
+                        <td scope="row">{song.artist}</td>
+                        <td scope="row">{song.album}</td>
+                        <td scope="row">{song.release_date}</td>
+                        <td scope="row">{song.genre}</td>
                         </tr>     
                     );
                 })}
