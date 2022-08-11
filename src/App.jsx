@@ -12,24 +12,25 @@ function App() {
     getAllSongs();
 }, [])
 
+
   async function getAllSongs(){
     let response = await axios.get('http://127.0.0.1:8000/api/song/');
     setSongs(response.data);
     console.log(response.data)
-
-  async function newSongList(){
-    setSongs();
-    console.log()
+  }
+  async function newSongList(newSongs){
+    setSongs(newSongs);
+    console.log(newSongs)
   }   
   
-}
+
 return(
   <div className="container-fluid">
     <div className="border-box">
       <DisplayMusic allSongs={songs}/>
     </div>
     <div>
-      <SearchBar filteredSongs={songs}/>
+      <SearchBar allSongs={songs} newSongList = {newSongList}/>
     </div>
   </div>
 )

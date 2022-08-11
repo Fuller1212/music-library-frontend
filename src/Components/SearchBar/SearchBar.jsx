@@ -5,52 +5,41 @@ import axios from 'axios';
 const SearchBar = (props) => {
     
     async function artistFilter() {
-        let response = await axios.get('http://127.0.0.1:8000/api/song/');
         let userInput = prompt('Search by artist name ');
-        let newSongChoices = response.data.filter(function(song){
+        let filteredSongs = props.allSongs.filter(function(song){
             if (song.artist === userInput) {
-                return newSongChoices
+                return true
             }
-            else{
-                alert('No artist matches search')
-            }
-        })
+        });
+        props.newSongList(filteredSongs)
     }
     async function albumFilter() {
-        let response = await axios.get('http://127.0.0.1:8000/api/song/');
-        let userInput = prompt('Search by albuum name ')
-        let newSongChoices = response.data.filter(function(song){
+        let userInput = prompt('Search by album name ')
+        let filteredSongs = props.allSongs.filter(function(song){
             if(song.album === userInput){
-                return newSongChoices
+                return true
             }
-            else{
-                alert('No album matches search')
-            }
-        })
+            
+        });
+        props.newSongList(filteredSongs)
     }
     async function releaseDateFilter() {
-        let response = await axios.get('http://127.0.0.1:8000/api/song/');
         let userInput = prompt('Search by songs release date ')
-        let newSongChoices = response.data.filter(function(song){
+        let filteredSongs = props.allSongs.filter(function(song){
             if(song.release_date === userInput){
-                return newSongChoices
+                return true
             }
-            else{
-                alert('No release date matches search')
-            }
-        })
+        });
+        props.newSongList(filteredSongs)
     }
     async function genreFilter(){
-        let response = await axios.get('http://127.0.0.1:8000/api/song/');
         let userInput = prompt('Search by genre')
-        let newSongChoices = response.data.filter(function(song){
+        let filteredSongs = props.allSongs.filter(function(song){
             if(song.genre === userInput){
-                return newSongChoices
+                return true
             }
-            else{
-                alert('No genre matches search')
-            }
-        })
+        });
+        props.newSongList(filteredSongs)
     }
     
     return ( 
@@ -58,11 +47,9 @@ const SearchBar = (props) => {
             <div className='col'>   
             
                 <label>Artist</label>
-                <input type='text'></input>
                 <button onClick={artistFilter}>Filter</button>
            
                 <label>Album</label>
-                <input type='text'></input>
                 <button onClick={albumFilter}>Filter</button>
              
                 <label>Release Date</label>
@@ -70,7 +57,6 @@ const SearchBar = (props) => {
                 <button onClick={releaseDateFilter}>Filter</button>
              
                 <label>Genre</label>
-                <input type='text'></input>
                 <button onClick={genreFilter}>Filter</button>
             </div>
             
